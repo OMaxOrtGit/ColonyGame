@@ -2255,7 +2255,7 @@ class War: UIViewController {
         CR7.text = "Wait Until Tomorrow"
         userDefaults.set("Wait Until Tomorrow", forKey: "SM7V")
     
-    let alertController = UIAlertController(title: "Already Fought Today", message: "Please Wait Until Tomorrow to Fight\nOr if You Want to Today, Beat Every Fight", preferredStyle: UIAlertController.Style.alert)
+    let alertController = UIAlertController(title: "Already Fought Today", message: "Please Wait Until Tomorrow to Fight\nOr if You Want to try Again Today Beat Every Fight", preferredStyle: UIAlertController.Style.alert)
     alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: nil))
     
     self.present(alertController, animated: true, completion: nil)
@@ -2556,6 +2556,22 @@ class Shop: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     
     
     
+    @IBAction func SellCTC(_ sender: Any) {
+        if SellCT.text == ""{
+            SellIT.text = ""
+        }
+        if SellIT.text != "" && Int(SellCT.text!) != nil{
+            if Int(SellIT.text!)! > 100000000000 {
+                SellIT.deleteBackward()
+            }
+            SellISM = Int(Double(SellCT.text!)! / 20)
+            SellIS.value = Double(SellISM)
+            SellCS.value = Double(SellISM)
+            SellISM = Int(SellCS.value) * 20
+            SellCT.text = "\(SellISM)"
+            SellIT.text = "\(Int(SellIS.value))"
+        }
+    }
     
     
     @IBAction func IronOreCTC(_ sender: Any) {
@@ -2583,10 +2599,10 @@ class Shop: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             if Int(FireWoodIT.text!)! > 100000000000 {
                 FireWoodIT.deleteBackward()
             }
-            FireWoodISM = Int(Double(FireWoodCT.text!)! / 20)
+            FireWoodISM = Int(Double(FireWoodCT.text!)! / ChI)
             FireWoodIS.value = Double(FireWoodISM)
             FireWoodCS.value = Double(FireWoodISM)
-            FireWoodISM = Int(FireWoodCS.value) * 20
+            FireWoodISM = Int(FireWoodCS.value) * ChI
             FireWoodCT.text = "\(FireWoodISM)"
             FireWoodIT.text = "\(Int(FireWoodIS.value))"
         }
